@@ -18,8 +18,18 @@ def hello(name, count):
 
 
 @cli.command()
-def goodbye():
-    click.echo('goodbye!')
+@click.option('--name', prompt='your name please')
+def goodbye(name):
+    click.echo('goodbye {}!'.format(name))
+
+
+@cli.command()
+@click.option('--person', type=(str, int), help='a human being')
+def whois(person):
+    name = person[0]
+    age = person[1]
+    click.echo("who: {}\nhow old?: {}".format(name, age))
+
 
 if __name__ == '__main__':
     cli()
